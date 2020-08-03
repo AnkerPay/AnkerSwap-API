@@ -80,6 +80,16 @@ NONE
   ...
 }
 ```
+    `minimum` is the lowest amount of the input coin you can swap
+    `symbol` is the 3-5 digit symbol for the coin listed.
+    `limit` is the highest amount of this coin you can send
+    `name` is the full name of coin listed.
+    `image` is a URL to an image of the icon for the coin listed.
+    `imageSmall` is a URL to an image of the smaller icon for the coin listed
+    `status` will read available or unavailable depending on if the coin is currentlt online.
+    `minerFee` is an estimation of the proper miner fee to send this con successfully.
+    `maxLimit` is the highest amount of the input coin you can
+
 
 ###  Current Target Coins List. 
 ```
@@ -109,7 +119,16 @@ NONE
   ...
 }
 ```
-
+    `minimum` is the lowest amount of the input coin you can swap
+    `symbol` is the 3-5 digit symbol for the coin listed.
+    `limit` is the highest amount of this coin you can send
+    `name` is the full name of coin listed.
+    `image` is a URL to an image of the icon for the coin listed.
+    `imageSmall` is a URL to an image of the smaller icon for the coin listed
+    `status` will read available or unavailable depending on if the coin is currentlt online.
+    `minerFee` is an estimation of the proper miner fee to send this con successfully.
+    `maxLimit` is the highest amount of the input coin you can
+    
 ### Details on cryptoassets traded on an exchange.
 ```
 GET /api/v1/pairs
