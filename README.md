@@ -273,6 +273,69 @@ type | STRING | NO | To indicate nature of trade - "buy" or "sell"
 
 
 
+## Trading endpoints
+### Fixed Amount Transaction.
+```
+POST /api/v1/sendamount
+```
+This call allows you to request a fixed amount to be sent to the withdrawal address. You provide a withdrawal address and the amount you want sent to it. We return the amount to deposit and the address to deposit to. 
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+withdrawal | STRING | YES | the address for coin to be sent to
+pair | STRING | YES | what coins are being exchanged in the form [input coin]_[output coin] ie LTC_BTC
+returnAddress | STRING | YES | address to return deposit to if anything goes wrong with exchange
+
+
+**Response:**
+```javascript
+{
+  "success": {
+    "orderId": "11111b11-000a-111a-a11a-11a1a11a1a11",
+    "pair": "BTC_ETH",
+    "withdrawal": "0x133459264443e3c56ef7d4e227c26822880b2744",
+    "withdrawalAmount": "0.01",
+    "deposit": "34qvKdkfSh85Kkct6tmCxLfLjJff73Sim4",
+    "depositAmount": "0.00007641",
+    "expiration": 1544463034153,
+    "quotedRate": "140.69217998",
+    "maxLimit": 2.83270872,
+    "returnAddress": "18N3RDhjBMf8q13clR4yen3XKaMC8G7no3",
+    "minerFee": "0.00075",
+    "userId": "111111a-b1e1-11af-11111-1111111d1b11"
+  }
+}
+```
+
+
+###  Status of deposit to address.
+```
+POST /api/v1/txstat/[address]
+```
+This endpoint returns the status of the most recent deposit transaction to the address.
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+address | STRING | YES |  is the deposit address to look up.
+
+**Response:**
+```javascript
+{
+  "status": "complete",
+  "address": "0xb80469d01912bd3c58673faeee4310c07550828e",
+  "withdraw": "19Eek1mnffFF7ecmWHxp2pDcrALmR4Nkon",
+  "incomingCoin": 0.08937546,
+  "incomingType": "ETH",
+  "outgoingCoin": "0.00251506",
+  "outgoingType": "BTC",
+  "transaction": "e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a",
+  "transactionURL": "https://blockchain.info/tx/e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a"
+}
+```
+
+
 
 
 
