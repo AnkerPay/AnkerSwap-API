@@ -125,9 +125,9 @@ NONE
   "time": 1596477571, 
   "data": [
     {
-      “ticker_id”: “BTC_ETH”,
+      "ticker_id": "BTC_ETH",
       "base": "BTC",
-     "target": "ETH"
+      "target": "ETH"
     }
   ]
 }
