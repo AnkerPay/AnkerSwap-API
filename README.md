@@ -119,15 +119,15 @@ NONE
   ...
 }
 ```
-    `minimum` is the lowest amount of the input coin you can swap
-    `symbol` is the 3-5 digit symbol for the coin listed.
-    `limit` is the highest amount of this coin you can send
-    `name` is the full name of coin listed.
-    `image` is a URL to an image of the icon for the coin listed.
-    `imageSmall` is a URL to an image of the smaller icon for the coin listed
-    `status` will read available or unavailable depending on if the coin is currentlt online.
-    `minerFee` is an estimation of the proper miner fee to send this con successfully.
-    `maxLimit` is the highest amount of the input coin you can
+`minimum` is the lowest amount of the input coin you can swap
+`symbol` is the 3-5 digit symbol for the coin listed.
+`limit` is the highest amount of this coin you can send
+`name` is the full name of coin listed.
+`image` is a URL to an image of the icon for the coin listed.
+`imageSmall` is a URL to an image of the smaller icon for the coin listed
+`status` will read available or unavailable depending on if the coin is currentlt online.
+`minerFee` is an estimation of the proper miner fee to send this con successfully.
+`maxLimit` is the highest amount of the input coin you can
     
 ### Details on cryptoassets traded on an exchange.
 ```
@@ -151,5 +151,131 @@ NONE
   ]
 }
 ```
+
+`ticker_id` Identifier of a ticker with delimiter to separate base/target, eg. BTC_ETH
+`base` Symbol/currency code of a the base cryptoasset, eg. BTC
+`target` Symbol/currency code of the target cryptoasset, eg. ETH
+
+### Market Info.
+```
+GET /api/v1/tickers
+```
+The /tickers endpoint provides 24-hour pricing and volume information on each market pair available on an exchange.
+
+**Parameters:**
+NONE
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data": [
+    {
+      "ticker_id": "DASH_BTC",
+      "base_currency": "DASH", 
+      "target_currency": "BTC", 
+      "ask": "0.007597"
+    },
+    ...
+  ]
+}
+```
+
+`ticker_id` Identifier of a ticker with delimiter to separate base/target, eg. BTC_ETH
+`base_currency` Symbol/currency code of a the base cryptoasset, eg. BTC
+`target_currency` Symbol/currency code of the target cryptoasset, eg. ETH
+`ask` Current lowest ask price
+
+
+### Order book depth details.
+```
+GET /api/v1/orderbook/ticker_id
+```
+The /orderbook/ticker_id endpoint is to provide order book information with at least depth = 100 (50 each side) returned for a given market pair/ticker. 
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+ticker_id | STRING | YES | A ticker such as "BTC_ETH", with delimiter between different cryptoassets
+depth | INT | NO | Orders depth quantity: [0, 100, 200, 500...]. 0 returns full depth. Depth = 100 means 50 for each bid/ask side.
+
+**Example query:**
+`.../api/v1/orderbook/BTC_ETH/?depth=200`
+
+
+**Response:**
+```javascript
+{
+  "ticker_id":	"BTC_ETH"
+  "timestamp":	1596475472
+  "asks": [
+            	"2.0"
+            	"28.433819"
+          ]
+}
+```
+
+`ticker_id` Identifier of a ticker with delimiter to separate base/target, eg. BTC_ETH
+`asks` Current lowest ask prices. An array containing 2 elements. The offer price and quantity for each bid order
+
+
+### Historical Data.
+```
+GET /api/v1/historical_trades/ticker_id
+```
+The /historical_trades/ticker_id is used to return data on historical completed trades for a given market pair.
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+ticker_id | STRING | YES | A ticker such as "BTC_ETH", with delimiter between different cryptoassets
+type | STRING | NO | To indicate nature of trade - "buy" or "sell"
+
+**Example query:**
+`.../api/v1/historical_trades/BTC_ETH
+
+
+**Response:**
+```javascript
+{
+  "ticker_id":	"BTC_ETH"
+  "timestamp":	1596475472
+  "buy": [    {
+            	"trade_id":1234567,
+              "price":"50.1",
+              "base_volume":"0.1",
+              "target_volume":"1",
+              "trade_timestamp":"1700050000",
+              "type":"buy"
+              },
+              ...
+         ],
+  "sell": [    {
+            	"trade_id":1234567,
+              "price":"52.1",
+              "base_volume":"0.1",
+              "target_volume":"1",
+              "trade_timestamp":"1700050000",
+              "type":"sell"
+              },
+              ...
+         ]
+}
+```
+
+`ticker_id` Identifier of a ticker with delimiter to separate base/target, eg. BTC_ETH
+`trade_id` A unique ID associated with the trade for the currency pair transaction
+`price` Transaction price in base pair volume.
+`base_volume` Transaction amount in base pair volume.
+`target_volume` Transaction amount in target pair volume.
+`trade_timestamp` Unix timestamp in milliseconds for when the transaction occurred.
+`type` Used to determine the type of the transaction that was completed. "buy" – Identifies an ask that was removed from the order book. "sell" – Identifies a bid that was removed from the order book.
+
+
+
+
+
+
+
 
 
