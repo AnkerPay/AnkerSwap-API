@@ -311,7 +311,7 @@ returnAddress | STRING | YES | address to return deposit to if anything goes wro
 
 ###  Status of deposit to address.
 ```
-POST /api/v1/txstat/[address]
+GET /api/v1/txstat/[address]
 ```
 This endpoint returns the status of the most recent deposit transaction to the address.
 
