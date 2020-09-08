@@ -1,4 +1,4 @@
-# Public Rest API for AnkerSwap
+# Public Rest API for AnkerSwap POS
 
 ## General API Information
 * The base endpoint is: **https://api.ankerswap.com**
@@ -65,11 +65,7 @@ NONE
 ```javascript
 {
   "time": 1596477571, 
-  "data": {
-        "ask": "181000.00", 
-        "bid": "180999.00", 
-        }
-  ...
+  "rate": "181000.00", 
 }
 ```
 
@@ -92,6 +88,7 @@ amount | STRING | YES | amount in ZAR
 **Response:**
 ```javascript
 {
+  "time": 1596477571, 
   "success": {
     "orderId": "11111b11-000a-111a-a11a-11a1a11a1a11",
     "pair": "BTC_ETH",
@@ -171,7 +168,7 @@ storeId | STRING | YES | Store Id.
 **Response:**
 ```javascript
 {
-  "status": "complete",
+  "time": 1596477571, 
   "terminalId": "Eek1mnffFF7ecmWHxp2pDc",
 }
 ```
@@ -192,7 +189,7 @@ key | STRING | YES | key.
 **Response:**
 ```javascript
 {
-  "status": "complete",
+  "time": 1596477571, 
   "terminalId": "Eek1mnffFF7ecmWHxp2pDc",
 }
 ```
@@ -213,7 +210,7 @@ key | STRING | YES | key.
 **Response:**
 ```javascript
 {
-  "status": "complete",
+  "time": 1596477571, 
   "balance": "500.00",
 }
 ```
@@ -234,7 +231,7 @@ key | STRING | YES | key.
 **Response:**
 ```javascript
 {
-  "status": "complete",
+  "time": 1596477571, 
   "data": [
   {
   "status": "complete",
@@ -253,6 +250,26 @@ key | STRING | YES | key.
   "transactionURL": "https://blockchain.info/tx/e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a"
   }
   ]
+}
+```
+
+###  Store balance.
+```
+POST /api/v1/pos/store/balance
+```
+This endpoint returns the balance of the store in ZAR.
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+storeId | STRING | YES | Store Id.
+key | STRING | YES | key.
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "balance": "5000.00",
 }
 ```
 
