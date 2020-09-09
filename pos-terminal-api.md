@@ -178,6 +178,7 @@ This endpoint add new terminal to the Store.
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
 storeId | STRING | YES | Store Id.
+place | STRING | YES | terminal place.
 
 **Response:**
 ```javascript
