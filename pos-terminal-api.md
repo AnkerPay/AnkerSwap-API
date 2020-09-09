@@ -249,20 +249,22 @@ key | STRING | YES | key.
   "time": 1596477571, 
   "data": [
   {
-  "status": "complete",
-  "address": "19Eek1mnffFF7ecmWHxp2pDcrALmR4Nkon",
-  "incomingCoin": 1.8936,
-  "incomingType": "BTC",
-  "transaction": "e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a",
-  "transactionURL": "https://blockchain.info/tx/e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a"
+    "orderId": "PETzZsYh8uYxSanS9YsBPy", 
+    "pair": "BTC_ZAR", 
+    "depositAddress": "3FfwQkufqCEr362Yti69QnVg9Ct19Fb7jC", 
+    "depositAmount": "150", 
+    "withdrawalAmount": "150.0", 
+    "created": "2020-09-09 13:51:46", 
+    "status": "no_deposit"
   },
   {
-  "status": "no_deposit",
-  "address": "19Eek1mnffFF7ecmWHxp2pDcrALmR4Nkon",
-  "incomingCoin": 1.001,
-  "incomingType": "BTC",
-  "transaction": "e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a",
-  "transactionURL": "https://blockchain.info/tx/e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a"
+    "orderId": "PETzZsYh8uYxSanS9YsBPy", 
+    "pair": "BTC_ZAR", 
+    "depositAddress": "3FfwQkufqCEr362Yti69QnVg9Ct19Fb7jC", 
+    "depositAmount": "150", 
+    "withdrawalAmount": "150.0", 
+    "created": "2020-09-09 13:51:46", 
+    "status": "no_deposit"
   }
   ]
 }
