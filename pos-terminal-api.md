@@ -80,8 +80,8 @@ This call allows you to create a new fixed amount invoice. You provide a StoreId
 **Parameters:**
 Name | Type | Mandatory | Description
 ------------ | ------------ | ------------ | ------------
-StoreId | STRING | YES | the StoreId
-TerminalId | STRING | YES | the TerminalId
+storeId | STRING | YES | the StoreId
+terminalId | STRING | YES | the TerminalId
 amount | STRING | YES | amount in ZAR
 
 
@@ -90,21 +90,20 @@ amount | STRING | YES | amount in ZAR
 {
   "time": 1596477571, 
   "success": {
-    "orderId": "11111b11-000a-111a-a11a-11a1a11a1a11",
-    "pair": "BTC_ETH",
-    "withdrawal": "0x133459264443e3c56ef7d4e227c26822880b2744",
-    "withdrawalAmount": "0.01",
+    "orderId": "AP26YkJo7tb4MCmDt7HhPt",
+    "pair": "btc_zar",
+    "withdrawal": "Bank Account",
+    "withdrawalAmount": "100",
     "deposit": "34qvKdkfSh85Kkct6tmCxLfLjJff73Sim4",
     "depositAmount": "0.00007641",
-    "expiration": 1544463034153,
-    "quotedRate": "140.69217998",
+    "expiration": 1500,
+    "apiPubKey": "AcNPAwpEiQmvpbvvyw5DiLHH8UsY3oWcpnSiy",
     "maxLimit": 2.83270872,
-    "returnAddress": "18N3RDhjBMf8q13clR4yen3XKaMC8G7no3",
     "minerFee": "0.00075",
-    "userId": "111111a-b1e1-11af-11111-1111111d1b11"
   }
 }
 ```
+
 
 ###  Invoice Status.
 ```
@@ -120,15 +119,22 @@ invoiceId | STRING | YES |  invoice Id to look up.
 **Response:**
 ```javascript
 {
-  "status": "complete",
-  "address": "19Eek1mnffFF7ecmWHxp2pDcrALmR4Nkon",
-  "incomingCoin": 1.8936,
-  "incomingType": "BTC",
-  "transaction": "e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a",
-  "transactionURL": "https://blockchain.info/tx/e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a"
+  "cryptoCode": "BTC", 
+  "invoiceId": "YC2eeMgSijcnf4PL72oPhG", 
+  "btcAddress": "3GQpWUCi94opx4dpynd2qJhoRAtepnWvUB", 
+  "btcDue": "0.00085195", 
+  "expirationSeconds": 379, 
+  "status": "invalid", 
+  "maxTimeSeconds": 1500, 
+  "storeName": "AnkerPay", 
+  "orderAmount": "0.00085195", 
+  "orderAmountFiat": "R150,00 (ZAR)", 
+  "invoiceBitcoinUrl": "bitcoin:3GQpWUCi94opx4dpynd2qJhoRAtepnWvUB?amount=0.00085195", 
+  "invoiceBitcoinUrlQR": "bitcoin:3GQpWUCi94opx4dpynd2qJhoRAtepnWvUB?amount=0.00085195", 
+  "txCount": 1, 
+  "btcPaid": "0.00000000"
 }
 ```
-
 
 
 ###  Status of deposit to address.
@@ -145,12 +151,20 @@ address | STRING | YES |  is the deposit address to look up.
 **Response:**
 ```javascript
 {
-  "status": "complete",
-  "address": "19Eek1mnffFF7ecmWHxp2pDcrALmR4Nkon",
-  "incomingCoin": 1.8936,
-  "incomingType": "BTC",
-  "transaction": "e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a",
-  "transactionURL": "https://blockchain.info/tx/e760822a528a181dc78bae3fca47a37a4f098d2397d68c4a6279799520fbb99a"
+  "cryptoCode": "BTC", 
+  "invoiceId": "YC2eeMgSijcnf4PL72oPhG", 
+  "btcAddress": "3GQpWUCi94opx4dpynd2qJhoRAtepnWvUB", 
+  "btcDue": "0.00085195", 
+  "expirationSeconds": 379, 
+  "status": "invalid", 
+  "maxTimeSeconds": 1500, 
+  "storeName": "AnkerPay", 
+  "orderAmount": "0.00085195", 
+  "orderAmountFiat": "R150,00 (ZAR)", 
+  "invoiceBitcoinUrl": "bitcoin:3GQpWUCi94opx4dpynd2qJhoRAtepnWvUB?amount=0.00085195", 
+  "invoiceBitcoinUrlQR": "bitcoin:3GQpWUCi94opx4dpynd2qJhoRAtepnWvUB?amount=0.00085195", 
+  "txCount": 1, 
+  "btcPaid": "0.00000000"
 }
 ```
 
@@ -191,6 +205,7 @@ key | STRING | YES | key.
 {
   "time": 1596477571, 
   "terminalId": "Eek1mnffFF7ecmWHxp2pDc",
+  "status": "open",
 }
 ```
 
@@ -198,7 +213,7 @@ key | STRING | YES | key.
 ```
 POST /api/v1/pos/terminal/balance
 ```
-This endpoint returns the balance of terminal in ZAR.
+This endpoint returns the unconfirmed balance of terminal in ZAR.
 
 **Parameters:**
 Name | Type | Mandatory | Description
@@ -257,7 +272,7 @@ key | STRING | YES | key.
 ```
 POST /api/v1/pos/store/balance
 ```
-This endpoint returns the balance of the store in ZAR.
+This endpoint returns the unconfirmed balance of the store in ZAR.
 
 **Parameters:**
 Name | Type | Mandatory | Description
@@ -270,6 +285,35 @@ key | STRING | YES | key.
 {
   "time": 1596477571, 
   "balance": "5000.00",
+}
+```
+
+###  Store's terminal list.
+```
+POST /api/v1/pos/store/terminals
+```
+This endpoint returns the list of invoices.
+
+**Parameters:**
+Name | Type | Mandatory | Description
+------------ | ------------ | ------------ | ------------
+storeId | STRING | YES | Store Id.
+key | STRING | YES | key.
+
+**Response:**
+```javascript
+{
+  "time": 1596477571, 
+  "data": [
+  {
+  "status": "open",
+  "terminalId": "Eek1mnffFF7ecmWHxp2pDc",
+  },
+  {
+  "status": "open",
+  "terminalId": "Eek1mnffFF7ecmWHxp2pDc",
+  }
+  ]
 }
 ```
 
