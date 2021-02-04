@@ -83,6 +83,7 @@ Name | Type | Mandatory | Description
 storeId | STRING | YES | the StoreId
 terminalId | STRING | YES | the TerminalId
 amount | STRING | YES | amount in ZAR
+coin | STRING | NO | default BTC
 
 
 **Response:**
