@@ -83,7 +83,7 @@ Name | Type | Mandatory | Description
 storeId | STRING | YES | the StoreId
 terminalId | STRING | YES | the TerminalId
 amount | STRING | YES | amount in ZAR
-coin | STRING | NO | default BTC
+
 
 
 **Response:**
@@ -91,7 +91,7 @@ coin | STRING | NO | default BTC
 {
   "time": 1596477571, 
   "success": {
-    "orderId": "AP26YkJo7tb4MCmDt7HhPt",
+    "invoiceId": "AP26YkJo7tb4MCmDt7HhPt",
     "pair": "btc_zar",
     "withdrawal": "Bank Account",
     "withdrawalAmount": "100",
@@ -101,6 +101,29 @@ coin | STRING | NO | default BTC
     "apiPubKey": "AcNPAwpEiQmvpbvvyw5DiLHH8UsY3oWcpnSiy",
     "maxLimit": 2.83270872,
     "minerFee": "0.00075",
+    "coins": {
+      "BTC":  {
+          "deposit": "34qvKdkfSh85Kkct6tmCxLfLjJff73Sim4",
+          "depositAmount": "0.00007641",
+          "invoiceUrl": "bitcoin:3GQpWUCi94opx4dpynd2qJhoRAtepnWvUB?amount=0.00007641", 
+          "minerFee": "0.00075",
+          "icon": "/api/v1/coins/BTC.png",
+        },
+      "DASH":  {
+          "deposit": "X34qvKdkfSh85Kkct6tmCxLfLjJff73Sim4",
+          "depositAmount": "0.5",
+          "invoiceUrl": "dash:X34qvKdkfSh85Kkct6tmCxLfLjJff73Sim4?amount=0.5", 
+          "minerFee": "0.00075",
+          "icon": "/api/v1/coins/BTC.png",
+        },
+      "NANO":  {
+          "deposit": "nano_defgd34qvKdkfSh85Kkct6tmCxLfLjJff73Sim4",
+          "depositAmount": "555",
+          "invoiceUrl": "nano:nano_defgd34qvKdkfSh85Kkct6tmCxLfLjJff73Sim4?amount=555", 
+          "minerFee": "0.00075",
+          "icon": "/api/v1/coins/BTC.png",
+       },        
+    }
   }
 }
 ```
