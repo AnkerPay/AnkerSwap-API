@@ -1,4 +1,4 @@
 # Table of contents
 
 * [AnkerSwap API](README.md)
-* [pos-terminal-api](pos-terminal-api.md)
+* [AnkerPOS Terminal API](pos-terminal-api.md)
