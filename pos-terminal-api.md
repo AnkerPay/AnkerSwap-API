@@ -1,7 +1,7 @@
 # Public Rest API for AnkerSwap POS
 
 ## General API Information
-* The base endpoint is: **https://api.ankerswap.com**
+* The base endpoint is: **https://ankerpay.com**
 * All endpoints return either a JSON object or array.
 * Data is returned in **ascending** order. Oldest first, newest last.
 * All time and timestamp related fields are in **seconds**.
